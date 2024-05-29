@@ -24,11 +24,11 @@ class Channel:
     """A dataclass representing a website from which RSS data is grabbed from.
 
     Attributes:
-        name: The name of the channel.
+        title: The name of the channel.
         url: The URL to the HTML website corresponding to the channel.
         description: Phrase or sentence describing the channel.
     """
-    name: str
+    title: str
     url: str
     description: str
     stories: list['Story']

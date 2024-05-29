@@ -15,7 +15,7 @@ def parse(content: str) -> Channel:
     description = channel.findtext("description")
     link = channel.findtext("link")
 
-    return Channel(name=title,
+    return Channel(title=title,
                    url=link,
                    description=description,
                    stories=[])
