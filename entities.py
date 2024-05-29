@@ -18,6 +18,12 @@ class Story:
     link: Optional[str]
     guid: Optional[str]
 
+    def __eq__(self, other):
+        if self.guid is not None and other.guid is not None:
+            return self.guid == other.guid
+        else:
+            return self.title == other.title or self.description == other.description
+
 
 @dataclass
 class Channel:
