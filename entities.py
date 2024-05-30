@@ -35,11 +35,13 @@ class Channel:
     Attributes:
         title: The name of the channel.
         url: The URL to the HTML website corresponding to the channel.
+        rss_url: The RSS URL.
         description: Phrase or sentence describing the channel.
         stories: An ordered list of stories from this channel.
     """
     title: str
     url: str
+    rss_url: str
     description: str
     stories: list[Story]
 
