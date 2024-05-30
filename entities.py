@@ -18,11 +18,14 @@ class Story:
     link: Optional[str]
     guid: Optional[str]
 
-    def __eq__(self, other):
-        if self.guid is not None and other.guid is not None:
-            return self.guid == other.guid
-        else:
-            return self.title == other.title or self.description == other.description
+    def serialise(self):
+        """Return a dictionary representation of this Story."""
+        return {
+            'title': self.title,
+            'description': self.description,
+            'link': self.link,
+            'guid': self.guid
+        }
 
 
 @dataclass
@@ -33,7 +36,18 @@ class Channel:
         title: The name of the channel.
         url: The URL to the HTML website corresponding to the channel.
         description: Phrase or sentence describing the channel.
+        stories: An ordered list of stories from this channel.
     """
     title: str
     url: str
     description: str
+    stories: list[Story]
+
+    def serialize(self) -> dict:
+        """Return a dictionary representation of this Channel."""
+        return {
+            'title': self.title,
+            'url': self.url,
+            'description': self.description,
+            'stories': [story.serialise() for story in self.stories]
+        }
