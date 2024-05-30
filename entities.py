@@ -37,4 +37,3 @@ class Channel:
     title: str
     url: str
     description: str
-    stories: list['Story']

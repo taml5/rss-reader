@@ -4,6 +4,16 @@ import xml.etree.ElementTree as XMLTree
 from entities import Channel, Story
 
 
+def isRSS(content: str) -> bool:
+    """Returns if a given XML document is an RSS document by checking if the root has the RSS tag.
+
+    Preconditions:
+     - root is the root of a valid XML document tree.
+    """
+    root = XMLTree.fromstring(content)
+    return root.tag == 'rss'
+
+
 def parse(content: str) -> Channel:
     """Parse a given RSS document into a Channel entity.
 
@@ -17,11 +27,10 @@ def parse(content: str) -> Channel:
 
     return Channel(title=title,
                    url=link,
-                   description=description,
-                   stories=[])
+                   description=description)
 
 
-def add_stories(content: str) -> list[Story]:
+def get_stories(content: str) -> list[Story]:
     """Given an RSS document, parse and return a list of its stories."""
     root = XMLTree.fromstring(content)[0]
     stories = []
