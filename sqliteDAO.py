@@ -34,12 +34,13 @@ class SQLiteDAO(DataAccessObject):
             print(e.sqlite_errorcode, e.sqlite_errorname)
             return False
 
-    def get_urls(self) -> set[tuple[str, str]]:
-        urls = set()
+    def get_urls(self) -> dict[str, str]:
+        urls = {}
         try:
-            for row in self.cursor.execute("SELECT * FROM urls"):
-                urls.add(row)
+            self.cursor = self.cursor.execute("""SELECT * FROM "urls";""")
+            for row in self.cursor:
+                urls[row[1]] = row[2]
         except sqlite3.Error as e:
-            print(e.sqlite_errorcode, e.sqlite_errorname)
+            print(e)
 
         return urls
