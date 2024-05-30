@@ -13,7 +13,7 @@ class DAOTestSuite(unittest.TestCase):
 
     def test_write_urls(self):
         dao = SQLiteDAO("test.db")
-        dao.write_url("https://www.techradar.com/feeds/tag/computing", "TechRadar")
+        dao.write_url("TechRadar", "https://www.techradar.com/feeds/tag/computing")
         urls = dao.get_urls()
         self.assertIn("TechRadar", urls)
         self.assertEqual(urls["TechRadar"], "https://www.techradar.com/feeds/tag/computing")
