@@ -14,7 +14,7 @@ def isRSS(content: str) -> bool:
     return root.tag == 'rss'
 
 
-def parse(content: str) -> Channel:
+def parse(content: str, url: str) -> Channel:
     """Parse a given RSS document into a Channel entity.
 
     Preconditions:
@@ -27,6 +27,7 @@ def parse(content: str) -> Channel:
 
     return Channel(title=title,
                    url=link,
+                   rss_url=url,
                    description=description,
                    stories=[])
 
