@@ -28,8 +28,8 @@ class SQLiteDAO(DataAccessObject):
 
     def remove_url(self, name: str) -> bool:
         try:
-            self.cursor.execute("DELETE FROM urls WHERE name = ?", name)
-            return False
+            self.cursor.execute("""DELETE FROM "urls" WHERE "name" = ?""", (name,))
+            return True
         except sqlite3.Error as e:
             print(e.sqlite_errorcode, e.sqlite_errorname)
             return False
