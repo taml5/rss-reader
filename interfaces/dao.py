@@ -5,7 +5,7 @@ from abc import ABC
 class DataAccessObject(ABC):
     """The data access object, used to access ."""
 
-    def write_url(self, url: str, name: str) -> bool:
+    def write_url(self, name: str, url: str) -> bool:
         """
         Write an RSS channel to the database.
 

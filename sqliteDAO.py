@@ -18,7 +18,7 @@ class SQLiteDAO(DataAccessObject):
         self.database = sqlite3.connect(filepath)
         self.cursor = self.database.cursor()
 
-    def write_url(self, url: str, name: str) -> bool:
+    def write_url(self, name: str, url: str) -> bool:
         try:
             self.cursor.execute("INSERT INTO urls (url, name) VALUES (?, ?)", (url, name))
             return False

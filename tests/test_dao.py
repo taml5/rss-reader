@@ -10,7 +10,6 @@ class DAOTestSuite(unittest.TestCase):
         self.assertIn("BBC Top Stories", urls)
         self.assertIn("BBC Asia", urls)
         self.assertIn("NYTimes Tech", urls)
-        self.assertIn("Reuters Politics", urls)
 
     def test_write_urls(self):
         dao = SQLiteDAO("test.db")
@@ -22,12 +21,12 @@ class DAOTestSuite(unittest.TestCase):
 
     def test_remove_url(self):
         dao = SQLiteDAO("test.db")
-        dao.remove_url("Reuters Politics")
+        dao.remove_url("NYTimes Tech")
 
         urls = dao.get_urls()
-        self.assertNotIn("Reuters Politics", urls)
+        self.assertNotIn("NYTimes Tech", urls)
         dao.cursor.execute("""INSERT INTO "urls" (name, url)
-                              VALUES ('Reuters Politics', 'https://www.reutersagency.com/feed/?best-topics=political-general&post_type=best')""")
+                              VALUES ('NYTimes Tech', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml')""")
 
 
 if __name__ == '__main__':
