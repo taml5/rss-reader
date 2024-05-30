@@ -27,16 +27,18 @@ def parse(content: str) -> Channel:
 
     return Channel(title=title,
                    url=link,
-                   description=description)
+                   description=description,
+                   stories=[])
 
 
-def get_stories(content: str) -> list[Story]:
+def get_stories(content: str, cap: int) -> list[Story]:
     """Given an RSS document, parse and return a list of its stories."""
     root = XMLTree.fromstring(content)[0]
     stories = []
 
-    for element in root.findall('item'):
-        story = _parse_story(element)
+    item_list = root.findall('item')
+    for i in range(0, min(len(item_list), cap)):
+        story = _parse_story(item_list[i])
         if story is not None:
             stories.append(story)
 
