@@ -24,11 +24,10 @@ class DataAccessObject(ABC):
         """
         raise NotImplementedError
 
-    def get_urls(self) -> set[tuple[str, str]]:
+    def get_urls(self) -> dict[str, str]:
         """
-        Return tuples consisting of the name of the RSS channel, and its url.
+        Return a dictionary of RSS urls.
 
-        :return: A set of 2-tuples. The first value is the name of the RSS channel, and the second is
-                 the url of the channel.
+        :return: A dictionary consisting of the name of an RSS channel as a key, and its url as the value.
         """
         raise NotImplementedError
