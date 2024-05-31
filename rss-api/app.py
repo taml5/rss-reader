@@ -28,7 +28,7 @@ def get_channels():
 def add_channel():
     json_data = request.json
     data = json.load(json_data)
-    raise NotImplementedError
+    return interactor.add_channel(data["name"], data["url"])
 
 
 @app.delete('/channels/')
