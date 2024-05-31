@@ -1,5 +1,7 @@
+"""Test suite for the interactor layer using a mock DAO. This suite requires an internet connection
+to function properly."""
 import unittest
-from interactor import Interactor, build_RSS
+from interactor import Interactor
 from entities import Channel
 from interfaces.dao import DataAccessObject
 
@@ -32,12 +34,11 @@ class MockDAO(DataAccessObject):
     channels: dict[str, str]
 
     def __init__(self):
-        channels = {
+        self.channels = {
             "BBC Top Stories": "https://feeds.bbci.co.uk/news/rss.xml",
             "BBC Asia": "https://feeds.bbci.co.uk/news/world/asia/rss.xml",
             "NYTimes Tech": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
         }
-        self.channels = channels
 
     def get_urls(self) -> dict[str, str]:
         return self.channels
