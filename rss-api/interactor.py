@@ -1,7 +1,7 @@
 """This module contains the main backend interactor responsible for """
 from interfaces.dao import DataAccessObject
 from entities import Channel
-import parser
+from interfaces import parser
 import requests
 
 
