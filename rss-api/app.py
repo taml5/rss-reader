@@ -14,14 +14,13 @@ interactor = Interactor(DAO, build_RSS(urls), 5)
 def main():
     interactor.build_channels()
     channels = [channel.serialize() for channel in interactor.channels]
-    return jsonify(channels=channels)
+    return jsonify(num_tracked=len(interactor.channels), channels=channels)
 
 
-@app.get('/channels/')
-def get_channels():
+@app.get('/refresh/')
+def get_stories():
     interactor.build_channels()
-    return jsonify(num_tracked=len(interactor.channels),
-                   channels=[channel.serialize() for channel in interactor.channels])
+    return jsonify({channel.title: channel.stories for channel in interactor.channels})
 
 
 @app.post('/channels/')
