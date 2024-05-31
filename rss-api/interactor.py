@@ -1,4 +1,4 @@
-"""This module contains the main backend interactor responsible for """
+"""This module contains the main backend interactor."""
 from interfaces.dao import DataAccessObject
 from entities import Channel
 from interfaces import parser
@@ -45,7 +45,7 @@ class Interactor:
         self.max_stories = story_cap
 
     def add_channel(self, name: str, url: str) -> bool:
-        """Start tracking a RSS channel.
+        """Start tracking an RSS channel.
 
         :param name: The given name of the RSS channel.
         :param url: The RSS url for the channel.
