@@ -1,3 +1,13 @@
+"""This module provides the API endpoints for the interactor via Flask. This serves
+as the controller layer for the RSS reader application.
+
+Defined API endpoints:
+ - GET / : Get a list of channels and stories up to the story limit (default: 5).
+ - GET /refresh/ : Refetch the channel information and get the list of channels.
+ - POST /channels/ : Add a channel to be tracked.
+ - DELETE /channels/ : Delete a channel from being tracked.
+ - PUT /storyCap/ : Set a new story limit to be displayed for each channel.
+"""
 from flask import Flask, jsonify, request
 import json
 from interactor import Interactor, build_RSS
@@ -12,19 +22,21 @@ interactor = Interactor(DAO, build_RSS(urls), 5)
 
 @app.route('/')
 def main():
+    """TODO:"""
     interactor.build_channels()
-    channels = [channel.serialize() for channel in interactor.channels]
-    return jsonify(num_tracked=len(interactor.channels), channels=channels)
+    return jsonify([channel.serialize() for channel in interactor.channels])
 
 
 @app.get('/refresh/')
 def get_stories():
+    """TODO:"""
     interactor.build_channels()
-    return jsonify({channel.title: channel.stories for channel in interactor.channels})
+    return jsonify([channel.serialize() for channel in interactor.channels])
 
 
 @app.post('/channels/')
 def add_channel():
+    """TODO:"""
     json_data = request.json
     data = json.load(json_data)
     return interactor.add_channel(data["name"], data["url"])
@@ -32,6 +44,7 @@ def add_channel():
 
 @app.delete('/channels/')
 def remove_channel():
+    """TODO:"""
     json_data = request.json
     data = json.load(json_data)
     return interactor.remove_channel(data["name"], data["url"])
@@ -39,10 +52,21 @@ def remove_channel():
 
 @app.put('/storyCap/')
 def set_max_stories():
+    """TODO:"""
     json_data = request.json
     data = json.load(json_data)
     interactor.max_stories = data["num"]
+    interactor.build_channels()
+    return jsonify([channel.serialize() for channel in interactor.channels])
+
+
+@app.after_request
+def add_header(response):
+    """Add the Access-Control-Allow-Origin header to each response to avoid
+    CORS errors from the browser."""
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
