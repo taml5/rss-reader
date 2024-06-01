@@ -10,7 +10,9 @@ function App() {
             if (r.ok) {
                 return r.json();}
         }).then((data) => {
-            console.log("Fetched channels" + data.map((channel: Channel) => {return " " + channel.title}));
+            console.log("Fetched channels" + data.map(
+                (channel: Channel) => {return " " + channel.title})
+            );
             setChannels(data);
         }).catch((error: Error) => console.log(error))
     }, [setChannels]);
@@ -33,7 +35,7 @@ function App() {
             <h1>Dingbat</h1>
             <div className={"feed"}>
                 {channels.map(channel => {
-                    return <Channel key={channel.title + channel.description}
+                    return <Channel key={channel.rss_url}
                                     title={channel.title}
                                     url={channel.url}
                                     rss_url={channel.rss_url}
