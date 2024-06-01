@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Channel from "./Channel.tsx";
+import {useEffect, useState} from "react";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [channels, setChannels] = useState<Channel[]>([]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        let channels: Channel[] = [];
+
+        const url: string = "http://127.0.0.1:5000";
+        fetch(url).then(r => {
+            if (r.ok) {
+                return r.json();}
+        }).then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                channels.push(data[i]);
+            }
+            setChannels(channels);
+        }).catch((error: Error) => console.log(error))
+
+    }, [setChannels])
+
+    return (
+        <>
+            <h1>Dingbat</h1>
+            <div className={"feed"}>
+                {channels.map(channel => {
+                    return <Channel key={channel.rss_url}
+                                    title={channel.title}
+                                    url={channel.url}
+                                    rss_url={channel.rss_url}
+                                    description={channel.description}
+                                    stories={channel.stories}/>
+                }
+            )}
+            </div>
+        </>
+    )
 }
 
 export default App
