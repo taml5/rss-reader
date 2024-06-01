@@ -21,9 +21,11 @@ function Channel(channel: Channel) {
         <p>{channel.description}</p>
         <div className={"storyContainer"}>
             {channel.stories.map(story =>
-                <StoryCard key={story.title}
+                <StoryCard key={story.guid + story.title}
                            title={story.title}
-                           description={story.description}/>)}
+                           description={story.description}
+                           link={story.link}
+                />)}
         </div>
     </div>);
 }
