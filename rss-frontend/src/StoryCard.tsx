@@ -2,10 +2,11 @@ import { Story } from "./Channel.tsx";
 
 function StoryCard(prop: Story) {
     return (
-        <a id={prop.guid} className="story" href={prop.link} target="_blank">
+        <div id={prop.guid} className="story">
             <h3>{prop.title}</h3>
             <p>{prop.description}</p>
-        </a>
+            <a href={prop.link} target="_blank"> <small>more</small> </a>
+        </div>
     );
 }
 
