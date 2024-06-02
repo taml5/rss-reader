@@ -7,40 +7,52 @@ from interfaces.dao import DataAccessObject
 class SQLiteDAO(DataAccessObject):
     """An implementation of the DataAcessObject using SQLite3.
 
-    Attributes:
-        database: The connection to the SQLite3 database.
-        cursor: The database cursor used to traverse records in the database.
+    Attribute:
+        filepath: The filepath to the database.
     """
-    database: sqlite3.Connection
-    cursor: sqlite3.Cursor
+    filepath: str
 
     def __init__(self, filepath: str):
-        self.database = sqlite3.connect(filepath)
-        self.cursor = self.database.cursor()
+        self.filepath = filepath
 
     def write_url(self, name: str, url: str) -> bool:
+        database = sqlite3.connect(self.filepath)
+        cursor = database.cursor()
         try:
-            self.cursor.execute("INSERT INTO urls (url, name) VALUES (?, ?)", (url, name))
-            return False
+            cursor.execute("INSERT INTO urls (url, name) VALUES (?, ?)", (url, name))
+            status = True
         except sqlite3.Error as e:
             print(e.sqlite_errorcode, e.sqlite_errorname)
-            return False
+            status = False
+
+        database.commit()
+        database.close()
+        return status
 
     def remove_url(self, name: str) -> bool:
+        database = sqlite3.connect(self.filepath)
+        cursor = database.cursor()
         try:
-            self.cursor.execute("""DELETE FROM "urls" WHERE "name" = ?""", (name,))
-            return True
+            cursor.execute("""DELETE FROM "urls" WHERE "name" = ?""", (name,))
+            status = True
         except sqlite3.Error as e:
             print(e.sqlite_errorcode, e.sqlite_errorname)
-            return False
+            status = False
+
+        database.commit()
+        database.close()
+        return status
 
     def get_urls(self) -> dict[str, str]:
+        database = sqlite3.connect(self.filepath)
+        cursor = database.cursor()
         urls = {}
         try:
-            self.cursor = self.cursor.execute("""SELECT * FROM "urls";""")
-            for row in self.cursor:
+            cursor.execute("""SELECT * FROM "urls";""")
+            for row in cursor:
                 urls[row[1]] = row[2]
         except sqlite3.Error as e:
             print(e)
 
+        database.close()
         return urls
