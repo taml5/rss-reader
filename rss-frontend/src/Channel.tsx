@@ -1,11 +1,4 @@
-import StoryCard from "./StoryCard.tsx";
-
-export interface Story {
-    title: string
-    description: string
-    link?: string
-    guid?: string
-}
+import StoryCard, {Story} from "./StoryCard.tsx";
 
 interface Channel {
     title: string

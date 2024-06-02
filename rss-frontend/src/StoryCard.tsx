@@ -1,4 +1,9 @@
-import { Story } from "./Channel.tsx";
+export interface Story {
+    title: string
+    description: string
+    link?: string
+    guid?: string
+}
 
 function StoryCard(prop: Story) {
     return (
