@@ -1,5 +1,5 @@
 import Channel from "./Channel.tsx";
-import React from "react";
+import React, {useState} from "react";
 
 interface ITracked {
     channels: Channel[]
@@ -8,7 +8,12 @@ interface ITracked {
 
 
 function TrackedCard(prop: ITracked) {
+    const [channelName, setChannelName] = useState("");
+    const [channelURL, setChannelURL] = useState("");
+
     function trackChannel(event: React.FormEvent<HTMLFormElement>) {
+        setChannelName("");
+        setChannelURL("");
         event.preventDefault();  // prevent browser from reloading the page
 
         const form = event.currentTarget;
@@ -44,11 +49,15 @@ function TrackedCard(prop: ITracked) {
                 <p>Add channel:</p>
                 <label>
                     Name:
-                    <input name={"name"} />
+                    <input name={"name"}
+                           value={channelName}
+                           onChange={e => setChannelName(e.target.value)}/>
                 </label>
                 <label>
                     URL:
-                    <input name={"url"} />
+                    <input name={"url"}
+                           value={channelURL}
+                           onChange={e => setChannelURL(e.target.value)}/>
                 </label>
                 <button type="submit">Submit</button>
             </form>

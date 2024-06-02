@@ -35,8 +35,10 @@ function App() {
     return (
         <>
             <h1>Dingbat</h1>
-            <Toolbar refreshFeed={refreshFeed}/>
-            <TrackedCard channels={channels} refreshFeed={refreshFeed}/>
+            <div className={"Options"}>
+                <Toolbar refreshFeed={refreshFeed}/>
+                <TrackedCard channels={channels} refreshFeed={refreshFeed}/>
+            </div>
             <div className={"feed"}>
                 {channels.map(channel => {
                     return <Channel key={channel.rss_url}
