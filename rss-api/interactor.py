@@ -52,27 +52,27 @@ class Interactor:
         :param url: The RSS url for the channel.
         :return: Whether the operation was successful.
         """
-        if not self.channelDAO.write_url(name, url):
-            # log db failure
-            return False
         try:
             response = requests.get(url)
             if not parser.isRSS(response.text):
+                return False
+            if not self.channelDAO.write_url(name, url):
+                # log db failure
                 return False
             self.channels.append(parser.parse(response.text, name, url))
             return True
         except requests.RequestException as e:
             print(e)
+            return False
 
-    def remove_channel(self, name: str, url: str) -> bool:
+    def remove_channel(self, name: str) -> bool:
         """Remove an RSS channel from being tracked, by deleting it from the database and the in-memory array.
 
         :param name: The given name of the channel.
-        :param url: The RSS url of the channel.
         :return:  Whether the operation was successful.
         """
         for i in range(len(self.channels)):
-            if self.channels[i].rss_url == url:
+            if self.channels[i].given_name == name:
                 if not self.channelDAO.remove_url(name):
                     return False
 

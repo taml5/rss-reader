@@ -9,7 +9,6 @@ Defined API endpoints:
 """
 from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
-import json
 from interactor import Interactor, build_RSS
 from sqliteDAO import SQLiteDAO
 
@@ -31,17 +30,21 @@ def main():
 @app.post('/channels/')
 def add_channel():
     """TODO:"""
-    json_data = request.json
-    data = json.load(json_data)
-    return interactor.add_channel(data["name"], data["url"])
+    data = request.form
+    interactor.add_channel(data["name"], data["url"])
+    interactor.build_channels()
+    return Response("Add channel", status=201)
 
 
 @app.delete('/channels/')
 def remove_channel():
     """TODO:"""
-    json_data = request.json
-    data = json.load(json_data)
-    return interactor.remove_channel(data["name"], data["url"])
+    name = request.data.decode("utf-8")
+    if interactor.remove_channel(name):
+        interactor.build_channels()
+        return Response(f"Deleted channel {name}", status=204)
+    else:
+        return Response(f"Failed to track channel {name}", status=400)
 
 
 @app.put('/storyCap/')
@@ -49,7 +52,7 @@ def set_max_stories():
     """TODO:"""
     interactor.max_stories = int(request.form["num"])
     interactor.build_channels()
-    return Response(status=201)
+    return Response(status=200)
 
 
 if __name__ == '__main__':
