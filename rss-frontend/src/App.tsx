@@ -1,6 +1,7 @@
 import Channel from "./Channel.tsx";
 import {useCallback, useEffect, useState} from "react";
 import Toolbar from "./Toolbar.tsx";
+import TrackedCard from "./TrackedCard.tsx";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <>
             <h1>Dingbat</h1>
             <Toolbar refreshFeed={refreshFeed}/>
+            <TrackedCard channels={channels} refreshFeed={refreshFeed}/>
             <div className={"feed"}>
                 {channels.map(channel => {
                     return <Channel key={channel.rss_url}

@@ -14,7 +14,7 @@ function Toolbar(prop: IToolbar) {
 
         fetch('http://127.0.0.1:5000/storyCap/', {method: "PUT", body: formData})
             .then(() => {
-                console.log("Updated story limit to " + formData.get("num"))
+                console.log("Updated story limit to " + formData.get("num"));
                 prop.refreshFeed();
             })
     }
