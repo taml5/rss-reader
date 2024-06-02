@@ -35,8 +35,8 @@ class DAOTestSuite(unittest.TestCase):
 
         database = sqlite3.connect("test.db")
         cursor = database.cursor()
-        cursor.execute("""INSERT INTO "urls" (name, url)
-                                      VALUES ('NYTimes Tech', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml');""")
+        cursor.execute("""INSERT INTO "urls" (name, url) 
+                          VALUES ('NYTimes Tech', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml');""")
         database.commit()
         database.close()
 
