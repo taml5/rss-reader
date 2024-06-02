@@ -25,7 +25,8 @@ function Channel(channel: Channel) {
                            title={story.title}
                            description={story.description}
                            link={story.link}
-                />)}
+                />
+            )}
         </div>
     </div>);
 }

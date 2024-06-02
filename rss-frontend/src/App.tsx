@@ -33,6 +33,7 @@ function App() {
     return (
         <>
             <h1>Dingbat</h1>
+            <button onClick={refreshFeed}>Refresh</button>
             <div className={"feed"}>
                 {channels.map(channel => {
                     return <Channel key={channel.rss_url}
@@ -41,8 +42,8 @@ function App() {
                                     rss_url={channel.rss_url}
                                     description={channel.description}
                                     stories={channel.stories}/>
-                }
-            )}
+                    }
+                )}
             </div>
         </>
     )
