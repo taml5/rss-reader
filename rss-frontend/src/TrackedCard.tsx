@@ -35,18 +35,10 @@ function TrackedCard(prop: ITracked) {
     }
 
     return (
-        <div>
+        <div className={"trackedChannels"}>
             <h2>Tracked Channels</h2>
-            <div>
-                {prop.channels.map(channel => {
-                    return <div key={channel.rss_url} className={"trackedChannel"}>
-                        <p>{channel.given_name}: {channel.rss_url}</p>
-                        <button onClick={() => untrackChannel(channel.given_name)}>Untrack</button>
-                    </div>
-                })}
-            </div>
             <form onSubmit={trackChannel}>
-                <p>Add channel:</p>
+                <h3>Add channel</h3>
                 <label>
                     Name:
                     <input name={"name"}
@@ -61,6 +53,15 @@ function TrackedCard(prop: ITracked) {
                 </label>
                 <button type="submit">Submit</button>
             </form>
+            <div>
+                {prop.channels.map(channel => {
+                    return <div key={channel.rss_url} className={"trackedChannel"}>
+                        <p>{channel.given_name}</p>
+                        <p><small><small>{channel.rss_url}</small></small></p>
+                        <button onClick={() => untrackChannel(channel.given_name)}>Untrack</button>
+                    </div>
+                })}
+            </div>
         </div>
     )
 }

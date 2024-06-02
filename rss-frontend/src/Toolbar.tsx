@@ -20,7 +20,7 @@ function Toolbar(prop: IToolbar) {
     }
 
 
-    return (<>
+    return (<div className={"toolbar"}>
             <p>Refresh stories: <button onClick={prop.refreshFeed}>Refresh</button></p>
             <form onSubmit={changeCap}>
                 <p>Number of stories per channel:
@@ -39,7 +39,7 @@ function Toolbar(prop: IToolbar) {
                 </p>
                 <button type="submit">Submit</button>
             </form>
-        </>
+        </div>
     )
 }
 
