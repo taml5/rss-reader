@@ -27,7 +27,7 @@ function App() {
         const interval = setInterval(() => {
             refreshFeed();
             console.log("Refreshed feed");
-        }, 1.8e6);
+        }, 600000);
 
         return () => clearInterval(interval);
     }, [])
