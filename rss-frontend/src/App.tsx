@@ -38,6 +38,7 @@ function App() {
             <div className={"feed"}>
                 {channels.map(channel => {
                     return <Channel key={channel.rss_url}
+                                    given_name={channel.given_name}
                                     title={channel.title}
                                     url={channel.url}
                                     rss_url={channel.rss_url}

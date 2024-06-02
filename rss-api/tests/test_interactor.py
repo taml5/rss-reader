@@ -6,17 +6,20 @@ from entities import Channel
 from interfaces.dao import DataAccessObject
 
 channels = [
-    Channel(title='BBC News',
+    Channel(given_name="a",
+            title='BBC News',
             url='https://www.bbc.co.uk/news',
             rss_url='https://feeds.bbci.co.uk/news/rss.xml',
             description='BBC News - News Front Page',
             stories=[]),
-    Channel(title='BBC News',
+    Channel(given_name="b",
+            title='BBC News',
             url='https://www.bbc.co.uk/news/world/asia',
             rss_url='https://feeds.bbci.co.uk/news/world/asia/rss.xml',
             description='BBC News - Asia',
             stories=[]),
-    Channel(title='NYT > Technology',
+    Channel(given_name="c",
+            title='NYT > Technology',
             url='https://www.nytimes.com/section/technology',
             rss_url='https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml',
             description='',

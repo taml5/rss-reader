@@ -1,6 +1,7 @@
 import StoryCard, {Story} from "./StoryCard.tsx";
 
 interface Channel {
+    given_name: string
     title: string
     url: string
     rss_url: string

@@ -5,21 +5,22 @@ from interfaces import parser
 import requests
 
 
-def build_RSS(urls: dict[str, str]) -> list[Channel]:
+def build_RSS(records: dict[str, str]) -> list[Channel]:
     """Build a list of Channels from the database records.
 
-    :param urls: A dictionary of url names as keys, and the RSS url as the value.
+    :param records: A dictionary of url names as keys, and the RSS url as the value.
     :returns: A list of Channels corresponding to each url.
     """
     channels = []
 
-    for url in urls.values():
+    for record in records:
         try:
+            url = records[record]
             response = requests.get(url)
             text = response.text
             if not parser.isRSS(text):
                 pass
-            channels.append(parser.parse(text, url))
+            channels.append(parser.parse(text, record, url))
         except requests.RequestException as e:
             print(e.response)
             pass
@@ -58,7 +59,7 @@ class Interactor:
             response = requests.get(url)
             if not parser.isRSS(response.text):
                 return False
-            self.channels.append(parser.parse(response.text, url))
+            self.channels.append(parser.parse(response.text, name, url))
             return True
         except requests.RequestException as e:
             print(e)

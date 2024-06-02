@@ -39,6 +39,7 @@ class Channel:
         description: Phrase or sentence describing the channel.
         stories: An ordered list of stories from this channel.
     """
+    given_name: str
     title: str
     url: str
     rss_url: str
@@ -48,6 +49,7 @@ class Channel:
     def serialize(self) -> dict:
         """Return a dictionary representation of this Channel."""
         return {
+            'given_name': self.given_name,
             'title': self.title,
             'url': self.url,
             'rss_url': self.rss_url,
