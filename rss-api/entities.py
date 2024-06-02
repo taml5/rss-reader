@@ -50,6 +50,7 @@ class Channel:
         return {
             'title': self.title,
             'url': self.url,
+            'rss_url': self.rss_url,
             'description': self.description,
             'stories': [story.serialise() for story in self.stories]
         }
