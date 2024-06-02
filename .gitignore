@@ -102,3 +102,7 @@ fabric.properties
 
 # Python
 **/__pycache__/
+
+# Database files
+rss-api/channels.db
+rss-api/tests/test.db
