@@ -57,7 +57,7 @@ def set_max_stories():
     """TODO:"""
     interactor.max_stories = int(request.form["num"])
     interactor.build_channels()
-    return jsonify([channel.serialize() for channel in interactor.channels])
+    return Response(status=201)
 
 
 if __name__ == '__main__':
