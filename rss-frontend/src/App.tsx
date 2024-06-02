@@ -4,7 +4,6 @@ import Options from "./Options.tsx";
 import Feed from "./Feed.tsx";
 import './App.scss';
 
-
 function App() {
     const [channels, setChannels] = useState<Channel[]>([]);
     const refreshFeed = useCallback( () => {
