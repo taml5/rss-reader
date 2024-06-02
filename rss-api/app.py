@@ -15,7 +15,7 @@ from sqliteDAO import SQLiteDAO
 app = Flask(__name__)
 CORS(app)
 
-DAO = SQLiteDAO("./tests/test.db")
+DAO = SQLiteDAO("channels.db")
 urls = DAO.get_urls()
 interactor = Interactor(DAO, build_RSS(urls), 5)
 
