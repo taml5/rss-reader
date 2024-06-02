@@ -8,12 +8,14 @@ Defined API endpoints:
  - DELETE /channels/ : Delete a channel from being tracked.
  - PUT /storyCap/ : Set a new story limit to be displayed for each channel.
 """
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
+from flask_cors import CORS
 import json
 from interactor import Interactor, build_RSS
 from sqliteDAO import SQLiteDAO
 
 app = Flask(__name__)
+CORS(app)
 
 DAO = SQLiteDAO("./tests/test.db")
 urls = DAO.get_urls()
@@ -53,19 +55,9 @@ def remove_channel():
 @app.put('/storyCap/')
 def set_max_stories():
     """TODO:"""
-    json_data = request.json
-    data = json.load(json_data)
-    interactor.max_stories = data["num"]
+    interactor.max_stories = int(request.form["num"])
     interactor.build_channels()
     return jsonify([channel.serialize() for channel in interactor.channels])
-
-
-@app.after_request
-def add_header(response):
-    """Add the Access-Control-Allow-Origin header to each response to avoid
-    CORS errors from the browser."""
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
 
 
 if __name__ == '__main__':
