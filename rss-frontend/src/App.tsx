@@ -6,8 +6,8 @@ import Toolbar from "./Toolbar.tsx";
 function App() {
     const [channels, setChannels] = useState<Channel[]>([]);
     const refreshFeed = useCallback( () => {
-        const url: string = "http://127.0.0.1:5000";
-        fetch(url).then(r => {
+        const url: string = "http://127.0.0.1:5000/";
+        fetch(url, {method: "GET"}).then(r => {
             if (r.ok) {
                 return r.json();}
         }).then((data) => {
