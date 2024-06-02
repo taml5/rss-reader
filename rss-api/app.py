@@ -31,9 +31,11 @@ def main():
 def add_channel():
     """TODO:"""
     data = request.form
-    interactor.add_channel(data["name"], data["url"])
-    interactor.build_channels()
-    return Response("Add channel", status=201)
+    if interactor.add_channel(data["name"], data["url"]):
+        interactor.build_channels()
+        return Response(f"Added channel {data['name']}", status=201)
+    else:
+        return Response(f"Failed to track channel {data['name']}", status=400)
 
 
 @app.delete('/channels/')
@@ -44,7 +46,7 @@ def remove_channel():
         interactor.build_channels()
         return Response(f"Deleted channel {name}", status=204)
     else:
-        return Response(f"Failed to track channel {name}", status=400)
+        return Response(f"Failed to untrack channel {name}", status=400)
 
 
 @app.put('/storyCap/')
