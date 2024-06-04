@@ -20,15 +20,24 @@
     }
   }
 
+  #channelAdder {
+    padding: 1em;
+    background-color: palegoldenrod;
+    border-radius: 25px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
   #trackedChannels {
     margin-block: 1em;
 
-    h2 {
-      margin: 0;
-    }
-
     #tracked {
       margin-block: 1em;
+      padding: 1em;
+      background-color: palegoldenrod;
+      border-radius: 25px;
 
       .trackedChannel {
         margin-block: 1em;
