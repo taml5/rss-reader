@@ -1,3 +1,5 @@
+import './StoryCard.scss';
+
 export interface Story {
     title: string
     description: string
