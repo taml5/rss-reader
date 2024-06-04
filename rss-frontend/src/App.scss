@@ -1,8 +1,26 @@
-h1 {
-  margin: 1rem;
+#header {
+  margin: 1em;
+  border-radius: 25px;
 }
 
 .app {
   display: flex;
+  flex-direction: column-reverse;
+  background-color: whitesmoke;
+  border-radius: 25px;
+}
+
+@media only screen and (min-width: 768px) {
+  .app {
+  display: flex;
   flex-direction: row-reverse;
+
+  .feed {
+    flex: 4;
+  }
+
+  #options {
+    flex: 1;
+  }
+}
 }

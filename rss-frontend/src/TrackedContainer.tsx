@@ -7,7 +7,7 @@ interface ITracked {
 }
 
 
-function TrackedCard(prop: ITracked) {
+function TrackedContainer(prop: ITracked) {
     const [channelName, setChannelName] = useState("");
     const [channelURL, setChannelURL] = useState("");
 
@@ -35,25 +35,29 @@ function TrackedCard(prop: ITracked) {
     }
 
     return (
-        <div className={"trackedChannels"}>
+        <div id={"trackedChannels"}>
             <h2>Tracked Channels</h2>
-            <form onSubmit={trackChannel}>
+            <form id="channelAdder" onSubmit={trackChannel}>
                 <h3>Add channel</h3>
                 <label>
-                    Name:
-                    <input name={"name"}
+                    <p>
+                        {"Name:  "}
+                        <input name={"name"}
                            value={channelName}
                            onChange={e => setChannelName(e.target.value)}/>
+                    </p>
                 </label>
                 <label>
-                    URL:
-                    <input name={"url"}
+                    <p>
+                        {"URL:  "}
+                        <input name={"url"}
                            value={channelURL}
                            onChange={e => setChannelURL(e.target.value)}/>
+                    </p>
                 </label>
                 <button type="submit">Submit</button>
             </form>
-            <div>
+            <div id={"tracked"}>
                 {prop.channels.map(channel => {
                     return <div key={channel.rss_url} className={"trackedChannel"}>
                         <p>{channel.given_name}</p>
@@ -66,4 +70,4 @@ function TrackedCard(prop: ITracked) {
     )
 }
 
-export default TrackedCard
+export default TrackedContainer

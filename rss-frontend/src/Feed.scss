@@ -1,6 +1,31 @@
 .feed {
-  margin: 1em;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1em;
+  margin-inline: 1em;
+
+  p {
+    font-size: small;
+
+  }
+  h3 {
+    font-size: medium;
+  }
+
+  .channelCard {
+    padding: 0.5em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .feed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .feed {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+  }
 }

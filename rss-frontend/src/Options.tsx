@@ -1,5 +1,5 @@
 import Toolbar from "./Toolbar.tsx";
-import TrackedCard from "./TrackedCard.tsx";
+import TrackedContainer from "./TrackedContainer.tsx";
 import Channel from "./Channel.tsx";
 import './Options.scss';
 
@@ -9,9 +9,9 @@ interface IOptions {
 }
 
 function Options(prop: IOptions) {
-    return <div className={"options"}>
+    return <div id={"options"}>
                 <Toolbar refreshFeed={prop.refreshFeed}/>
-                <TrackedCard channels={prop.channels} refreshFeed={prop.refreshFeed}/>
+                <TrackedContainer channels={prop.channels} refreshFeed={prop.refreshFeed}/>
     </div>
 }
 

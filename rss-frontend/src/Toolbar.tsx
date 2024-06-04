@@ -20,24 +20,22 @@ function Toolbar(prop: IToolbar) {
     }
 
 
-    return (<div className={"toolbar"}>
-            <p>Refresh stories: <button onClick={prop.refreshFeed}>Refresh</button></p>
+    return (<div id={"toolbar"}>
             <form onSubmit={changeCap}>
-                <p>Number of stories per channel:
-                    <label>
-                        <input type={"radio"} name={"num"} value={3}/>
-                        3
-                    </label>
-                    <label>
-                        <input type={"radio"} name={"num"} value={5}/>
-                        5
-                    </label>
-                    <label>
-                        <input type={"radio"} name={"num"} value={10}/>
-                        10
-                    </label>
-                </p>
-                <button type="submit">Submit</button>
+                <p>Number of stories per channel:</p>
+                <label>
+                    <input type={"radio"} name={"num"} value={3}/>
+                    3
+                </label>
+                <label>
+                    <input type={"radio"} name={"num"} value={5}/>
+                    5
+                </label>
+                <label>
+                    <input type={"radio"} name={"num"} value={10}/>
+                    10
+                </label>
+                <button type="submit">Change</button>
             </form>
         </div>
     )

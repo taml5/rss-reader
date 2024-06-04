@@ -1,3 +1,42 @@
-.options {
-  margin: 1em;
+#options {
+  margin-inline: 1em;
+
+  #toolbar {
+    margin-block: 1em;
+    display: flex;
+    flex-direction: column;
+
+    #refreshButton {
+      margin-block: 1em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      p, button  {
+        margin-block: 1em;
+      }
+    }
+  }
+
+  #trackedChannels {
+    margin-block: 1em;
+
+    h2 {
+      margin: 0;
+    }
+
+    #tracked {
+      margin-block: 1em;
+
+      .trackedChannel {
+        margin-block: 1em;
+      }
+
+      p {
+        margin-block: 0.5em;
+      }
+    }
+  }
 }

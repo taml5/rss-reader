@@ -34,7 +34,10 @@ function App() {
 
     return (
         <>
-            <h1>Dingbat</h1>
+            <div id={"header"}>
+                <h1>Dingbat</h1>
+                <button id={"refreshButton"} onClick={refreshFeed}>Refresh Channels</button>
+            </div>
             <div className={"app"}>
                 <Options channels={channels} refreshFeed={refreshFeed}/>
                 <Feed channels={channels}/>
