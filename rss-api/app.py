@@ -52,8 +52,8 @@ def add_channel():
 def remove_channel():
     """Responds to a DELETE request attempting to stop tracking a channel.
 
-    Requies
-        - A API request with the name of the channel to be deleted as the body.
+    Requires
+        - The name of the channel to be deleted as the body of the request.
     Returns
         - On success, a Response with status 204 and a message detailing the deletion. On failure, a Response with
           status 400 and a message detailing the failure to delete.
