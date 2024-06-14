@@ -6,5 +6,4 @@ You can start tracking channels, remove tracked channels, change the number of i
 ## TODO
 - [ ] Finish readme
 - [ ] Deploy backend
-  - [ ] Change database implementation from SQLite
-  - [ ] Deploy onto AWS Lambda
+- [ ] Change database implementation from SQLite
